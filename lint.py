@@ -18,7 +18,7 @@ MD_LINK_REF = re.compile(r"\[(.+?)\]\[(.+?)\]", re.MULTILINE)
 
 def lint(opt):
     """Main driver."""
-    files = find_files(opt, {opt.out})
+    files = find_files(opt.src)
     check_file_references(files)
 
     sections = {
@@ -129,8 +129,8 @@ def lint_markdown_links(opt, sections):
 
 def parse_args(parser):
     """Parse command-line arguments."""
-    parser.add_argument("--out", type=str, default="docs", help="output directory")
-    parser.add_argument("--root", type=str, default=".", help="root directory")
+    parser.add_argument("--dst", type=str, default="docs", help="output directory")
+    parser.add_argument("--src", type=str, default="src", help="input directory")
     return parser
 
 
